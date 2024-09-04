@@ -21,7 +21,7 @@ def calculate_check_mac_value(params):
 
 @app.route('/', methods=['GET', 'POST'])
 def payment_form():
-    TradeNo = "EKWA" + ''.join([str(random.randint(0, 9)) for _ in range(16)])
+    TradeNo = "EKWA" + str(random.random()).split(".")[-1]
     TradeDate = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
     return render_template('payment_form.html', TradeNo=TradeNo, TradeDate=TradeDate, check_mac_value='', total_amount='', choose_payment='', remark='', sponsor_name='')
 
