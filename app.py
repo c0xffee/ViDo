@@ -26,6 +26,27 @@ def payment_form():
     return render_template('payment_form.html', TradeNo=TradeNo, TradeDate=TradeDate, check_mac_value='', total_amount='', choose_payment='', remark='', sponsor_name='')
 
 
+@app.route('/ecpay/callback', methods=['GET', 'POST'])
+def ecpay_callback():
+    # 打印请求方法
+    print(f"Request Method: {request.method}")
+    
+    # 打印表单数据 (如果是 POST 请求)
+    if request.method == 'POST':
+        print(f"Form Data: {request.form}")
+        print(f"Request Data (bytes): {request.data}")
+        if request.is_json:
+            print(f"JSON Data: {request.json}")
+    
+    # 打印查询字符串 (GET 请求的参数)
+    print(f"Query String: {request.args}")
+    
+    # 打印请求头
+    print(f"Headers: {request.headers}")
+    
+    return "1|OK"
+
+
 @app.route('/process_non_hidden_data', methods=['POST'])
 def process_non_hidden_data():
     # 處理 JavaScript 發送的非 hidden 欄位
